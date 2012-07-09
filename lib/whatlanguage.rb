@@ -10,7 +10,7 @@ class WhatLanguage
   BITFIELD_WIDTH = 2_000_000
 
   LANGUAGES_INDEX = %w(en de nl sv pl da fi fr)
-  
+
   @@data = {}
   
   def initialize(options = {})
@@ -25,7 +25,7 @@ class WhatLanguage
   def process_text(text)
     results = Hash.new(0)
     it = 0
-    text.downcase.split.each do |word|
+    text.downcase.gsub(/\W/,' ').split.each do |word|
       it += 1
       @@data.keys.each do |lang|
         results[lang] += 1 if @@data[lang].includes?(word)
