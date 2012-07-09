@@ -45,7 +45,7 @@ class WhatLanguage
   end
   
   def language(text)
-    process_text(text).max { |a,b| a[1] <=> b[1] }.first rescue nil
+    process_text(text).max { |a,b| a[1] <=> b[1] }.first.to_s rescue nil
   end
   
   def self.filter_from_dictionary(filename)
