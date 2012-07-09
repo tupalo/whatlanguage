@@ -1,4 +1,6 @@
-require File.join(File.dirname(__FILE__), 'bloominsimple')
+require 'whatlanguage/version'
+require 'whatlanguage/bloominsimple'
+require 'whatlanguage/bitfield'
 require 'digest/sha1'
 
 class WhatLanguage
