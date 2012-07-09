@@ -8,12 +8,14 @@ class WhatLanguage
   HASHER = lambda { |item| Digest::SHA1.digest(item.downcase.strip).unpack("VV") }
   
   BITFIELD_WIDTH = 2_000_000
+
+  LANGUAGES_INDEX = %w(en de nl sv pl da fi fr)
   
   @@data = {}
   
   def initialize(options = {})
     languages_folder = File.join(File.dirname(__FILE__), "..", "lang")
-    Dir.entries(languages_folder).grep(/\.lang/).each do |lang|
+    LANGUAGES_INDEX.map{ |f| "#{ f }.lang" }.each do |lang|
       @@data[lang[/\w+/].to_sym] ||= BloominSimple.from_dump(File.new(File.join(languages_folder, lang), 'rb').read, &HASHER)
     end
   end
