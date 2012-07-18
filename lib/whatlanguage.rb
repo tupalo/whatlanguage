@@ -14,7 +14,7 @@ class WhatLanguage
   @@data = {}
   
   def initialize(options = {})
-    languages_folder = File.join(File.dirname(__FILE__), "..", "lang")
+    languages_folder = File.join(RAILS_ROOT, "config", "locales", "dictionaries")
     LANGUAGES_INDEX.map{ |f| "#{ f }.lang" }.each do |lang|
       @@data[lang[/\w+/].to_sym] ||= BloominSimple.from_dump(File.new(File.join(languages_folder, lang), 'rb').read, &HASHER)
     end
